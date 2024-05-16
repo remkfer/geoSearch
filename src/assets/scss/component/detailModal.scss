@@ -1,0 +1,85 @@
+.detailModal{
+    position: absolute;
+    top: 100px;
+    right: 0;
+    z-index: 9999;
+    background-color: #fff;
+    width: 320px;
+    table{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        padding-bottom: 16px;
+        caption{
+            background-color: #e2e2e2;
+            font-weight: bold;
+            color: black;
+            position: relative;
+            margin-bottom: 10px;
+            p{
+                display: flex;
+                font-size: $p;
+                margin: 0;
+                padding: 10px 0 10px 12px;
+            }
+            span{
+                position: absolute;
+                cursor: pointer;
+                right: 15px;
+                top: 15px;
+                color: #474747;
+            }
+        }
+        tr{
+            display: flex;
+            
+            th{
+                width: 40%;
+                padding: 6px 0 ;
+                color: rgb(146, 146, 146);
+                display: flex;
+                justify-content: end;
+            }
+            td{
+                width: 60%;
+                display: flex;
+                padding-left: 20px;
+                align-items: center;
+                justify-content: start;
+                color: #000;
+                a{
+                    cursor: pointer;
+                }
+                a.download{
+                    margin-left: 20px;
+                }
+                :last-child(1){
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+.modalCover{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99999;
+    
+    .showImg{
+        img{
+            height: 100vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 99999;
+            
+        }
+    }
+}

@@ -1,0 +1,72 @@
+@import '../var/font';
+
+.district, .level, .time{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 0 10px;
+    p{
+        color: #000;
+        font-size: $p;
+        font-weight: 800;
+        margin: 10px 0;
+        display: flex;
+        padding-left: 4px;
+        
+    }
+    .line{
+        margin: 20px 20px 10px 0;
+        border-left: 4px solid #02318E;
+    }
+
+    .mx-input-wrapper{
+        width: 14.7vw;
+
+        .mx-input{
+            width: 14.7vw;
+            color: black;
+            font-size: $input;
+            padding: 18px 16px;
+            cursor: pointer;
+            display: flex;
+            border: 1px solid #dde;
+        }
+        .mx-input::placeholder{
+            color: #A8ABB2;
+        }
+        .mx-icon-calendar{
+            color: #959595;
+            padding-right: 8px;
+        }
+        .mx-input:hover{
+            border: 1px solid #ccc;
+        }
+    }
+            
+    //Element plus 
+    .el-select__wrapper{
+        .el-select__placeholder{
+            font-size: $option;
+        }
+        .el-select__input-wrapper{
+            font-size: $option;
+        }
+        .el-select__tags-text{
+            font-size: 0.9rem;
+        }
+        .el-input__inner{
+            color: black;
+        }
+        .el-tag.is-closable{
+            border: 1px solid #ccc;
+            background-color: #fff;
+            color: black;   
+        }
+        .el-tag .el-icon{
+            border: 1px solid #ccc;
+        }
+    }
+}
+.el-select-dropdown__item {
+    font-size: $input !important;
+}

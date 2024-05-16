@@ -1,0 +1,229 @@
+v-model
+創建空陣列
+目的為接取表單變化時的資料 (ex.select表單被選擇的值)
+此值可拿來判斷篩選
+ps.不會有其他賦值的動作
+(雙向綁定)
+
+
+v-for 的key要綁唯一值 可避免重複渲染
+例如index索引(:key="index")、id(:key="item.id")等等.
+
+v-for較特別的地方
+可以對數組元素，經處理後再顯示出來，一般為透過創建一個計算屬性，来返回過濾或排序後的數組
+EX. 
+<li v-for="n in evenNumbers">{{ n }}</li>
+...............省略................
+data() {
+        return {
+            numbers: [ 1, 2, 3, 4, 5 ]
+	     }
+    },
+computed: {
+        evenNumbers() {
+            return this.numbers.filter(number => number % 2 === 0)
+        }
+}
+...............省略................
+
+
+props接收父組件的傳遞
+    props較理想風視為指定型別 若型別不符合則無法接收
+    ps. props的名稱命名要用- ，不要用駝峰
+    ps. props驗證的type型別包含String、Number、Boolean、Array、Object、Date、Function、Symbol
+
+emits傳送給父組件
+
+ps.兩者皆在子組件內使用 props in, emits out (單向綁定)
+
+props示範
+子組件: const props = defineProps(['greeting-message'])
+//其中greeting-message代表希望接受的props名稱 (要用在父組件上的)
+
+父組件
+<MyComponent greeting-message="hello" />
+
+
+watch基本語法
+watch: {
+   // 你要監聽的值，可以是data屬性的變數、或是computed計算後的值
+   dataName: function(nval, oldVal) {
+     // 傳入的函數中表示當值變動時，你所要執行的callback，其中第一個參數表示變動後的值
+     
+   }
+}
+
+*computed和watch比較
+computed 
+返回的是值。
+使用到computed的時候，理應都是想要取得某些資料的一部分（或是運算），
+但是又不想直接操作原有的資料，所以在寫computed的時候不要去更改data的值或是狀態。
+通常拿來做響應式資料的加工計算，具備緩存特性，能提昇效能，
+緩存意旨只在響應式資料改變時，重新執行運算，
+而當computed裡依賴的data的值若是沒有更動，就不會引發重新計算。
+watch
+監視數據的變化，當特定數據的值發生變化時，你可以執行自定義的操作
+deep 深度監聽
+當你watch的東西如果你將他視爲一個整體，那可以不使用deep，
+但是如果你關心的是這個物件裏面任何一個屬性若是發生變化，你的行爲都要改變的話，那就用deep寫法
+
+
+
+:style
+靜態 <div style="color: red; font-size: 30px;">靜態範例</div>
+動態 <div :style="{ color: activeColor, fontSize: fontSize + 'px' }">動態範例</div>
+
+ex. <div :style="styleObject">菜鸟教程</div>
+..............省略...............
+    data() {
+        return {
+			styleObject: {
+                color: "red",
+			    fontSize: "30px"
+			}
+        }
+    }
+
+
+v-on的事件修飾符
+.stop - 阻止冒泡
+.prevent - 阻止默认事件
+.capture - 阻止捕获
+.self - 只监听触发该元素的事件
+.once - 只触发一次
+.left - 左键事件
+.right - 右键事件
+.middle - 中间滚轮事件
+
+router路由
+<router-link to="/">連結</router-link>
+路由出口(渲染router的地方)
+<router-view></router-view>
+
+axois.get(api)
+.then(res => ())
+.catch(function(err){
+    console.log(err)
+})  //post/get 相同
+
+傳參數語法
+get
+    axios.get('/user', {
+        params: {
+            ID: 12345
+        }
+    }).then({}) .catch({})
+
+post
+    axios.post('/user', {
+        firstName: 'Fred',        // 参数 firstName
+        lastName: 'Flintstone'    // 参数 lastName
+    }).then({}) .catch({})
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------SASS------------------------------------------
+
+sass 和 scss差異
+scss有 {} 和 結尾必須有;
+sass每行內縮即可
+
+mixin
+若有重複性使用的樣式 可設定為mixin 
+@mixin shadow {
+    box-shadow: 1px 2px 2px #666;
+}
+
+再去需要使用的地方include
+.button {
+    @include shadow;
+  }
+
+使用參數
+若很多地方都須用到他指示設定的數值不同即可用傳遞參數的方式
+
+@mixin cover($opacity_value) {
+    opacity: $opacity_value; // opacity 的值由傳進來的參數決定
+}
+
+.button {
+    @include cover(0.9); // 呼叫的時候帶入數值
+}
+
+設定預設值
+@mixin rounded-border($color: #333, $line_style: solid, $radius: 5px) {
+    border: 2px $color $line_style;
+    border-radius: $radius;
+}
+
+若不使用預設值 欲另行設定
+只要依序帶入$color、$line_style 的值 
+    @include rounded-border(#f00, dashed);
+
+若沒有要設定color(第一個值)，則需要帶入參數名稱
+    @include rounded-border($line_style: dashed, $radius: 3px);
+
+若使用預設值 則語法和一般套用一樣
+    @include rounded-border
+
+
+extend (可使用mixin參數即可)
+把重複寫的同樣設定延伸到要套用的 class 上，
+且只會將有用到的 extends 輸出成 css,
+如果有些部分目前沒有使用到，就不轉換輸出
+語法 :
+設定  %extend名稱
+使用  @extend %extend名稱
+ps. extend也可直接繼承某個class的樣式 語法@extend .main
+
+
+*mixin和extend差異 個別使用時機
+    extend
+        把重複的東西整理起來，而且屬於同一類型的東西，
+        像是基礎的 button 該有多少 padding，字型大小該多大。
+        針對統一的『樣式』去繼承所有基本內容。
+
+    mixin
+        過參數彈性地去運用已經寫好的 css ，設定統一的數值來管理 property，
+        例如設定一個字型 mixin，當其他 css 透過這個字型 mixin 去套用時，
+        可以依據字型來判斷要顯示的大小，
+        類似一個工廠，把材料丟進去後做一些運算，來符合我們要的結果
+    總結
+         css 有需要因地制宜的時候，選 mixin;
+         當你的 css 是某項類別的基礎或延伸時，選 extend 
+
+
+*nested 嵌套寫法(:hover)
+.nav {
+  &:hover {
+    color: #ccc;
+  }
+}
+
+
+function 可用於倍數關係
+Ex. $baseLineHeight : 10px; //變數
+
+    @function + function名稱 + ( $參數:  1) {  //1 為預設值
+        @return $變數 * $參數
+    }
+引入function
+css樣式: function名稱(參數)
+ex. .button { 
+        padding: padding(1.5);
+    }
+    
+
+
+
+partial module? 
+@content? 可用在rwd時 (要再了解)
+@each 

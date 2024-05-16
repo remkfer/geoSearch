@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "94e2b17c-d61d-47ec-b569-44e7c766e1aa",
+		"name": "高雄水利局地下孔洞後端功能",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19805126"
+	},
+	"item": [
+		{
+			"name": "下拉選單",
+			"item": [
+				{
+					"name": "取得行政區",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "KCG_TEST",
+									"description": "http://211.72.231.157/Kcg_Wrb_SP",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{TEST}}/Kcg_Wrb_SP/api/v1/getDis",
+							"host": [
+								"{{TEST}}"
+							],
+							"path": [
+								"Kcg_Wrb_SP",
+								"api",
+								"v1",
+								"getDis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "取得破壞程度",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{TEST}}/Kcg_Wrb_SP/api/v1/getLevel",
+							"host": [
+								"{{TEST}}"
+							],
+							"path": [
+								"Kcg_Wrb_SP",
+								"api",
+								"v1",
+								"getLevel"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "地下孔洞",
+			"item": [
+				{
+					"name": "查詢資料列表",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "dis",
+									"value": "鳳山區",
+									"description": "行政區",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "dts",
+									"value": "2022-03-01",
+									"description": "開始日期",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "dte",
+									"value": "2022-03-31",
+									"description": "結束日期",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "dtype[0]",
+									"value": "A",
+									"description": "破壞程度",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "dtype[1]",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "dtype[2]",
+									"value": "C",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"description": "頁數",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{TEST}}/Kcg_Wrb_SP/api/v1/search_SP_List",
+							"host": [
+								"{{TEST}}"
+							],
+							"path": [
+								"Kcg_Wrb_SP",
+								"api",
+								"v1",
+								"search_SP_List"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "取得單筆資料",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ID",
+									"value": "1",
+									"description": "資料主表編號",
+									"type": "text"
+								},
+								{
+									"key": "DTYPE",
+									"value": "S2",
+									"description": "破壞程度",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{TEST}}/Kcg_Wrb_SP/api/v1/get_SP_detail",
+							"host": [
+								"{{TEST}}"
+							],
+							"path": [
+								"Kcg_Wrb_SP",
+								"api",
+								"v1",
+								"get_SP_detail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "巡查軌跡",
+			"item": [
+				{
+					"name": "查詢軌跡",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "dis",
+									"value": "三民區",
+									"description": "行政區",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "dts",
+									"value": "2022-01-01",
+									"description": "開始日期",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "dte",
+									"value": "2022-03-18",
+									"description": "結束日期",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{TEST}}/Kcg_Wrb_SP/api/v1/search_TRACE_List",
+							"host": [
+								"{{TEST}}"
+							],
+							"path": [
+								"Kcg_Wrb_SP",
+								"api",
+								"v1",
+								"search_TRACE_List"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
